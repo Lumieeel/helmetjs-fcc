@@ -4,7 +4,7 @@ const app = express();
 
 /****** Solution code starts here ******/
 
-app.use(helmet.hidePoweredBy());
+app.use(helmet.frameguard({ action: 'deny' }));
 
 /****** Solution code ends here ******/
 
@@ -23,9 +23,6 @@ app.listen(port, () => {
 });
 
 module.exports = app;
-
-
-
 
 
 

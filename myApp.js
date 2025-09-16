@@ -10,16 +10,19 @@ const api = require("./server.js");
 app.use(helmet.hidePoweredBy());
 
 // Reto 3
-// app.use(helmet.frameguard({ action: "deny" }));
+app.use(helmet.frameguard({ action: "deny" }));
 
 // Reto 4
-// app.use(helmet.xssFilter());
+app.use(helmet.xssFilter());
 
 // Reto 5
-// app.use(helmet.noSniff());
+app.use(helmet.noSniff());
 
 // Reto 6
 app.use(helmet.dnsPrefetchControl());
+
+// Reto 7
+app.use(helmet.noCache());
 
 app.use(express.static("public"));
 app.disable("strict-transport-security");

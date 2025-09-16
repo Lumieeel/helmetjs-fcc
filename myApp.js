@@ -16,7 +16,10 @@ app.use(helmet.hidePoweredBy());
 // app.use(helmet.xssFilter());
 
 // Reto 5
-app.use(helmet.noSniff());
+// app.use(helmet.noSniff());
+
+// Reto 6
+app.use(helmet.dnsPrefetchControl({ allow: false }));
 
 app.use(express.static("public"));
 app.disable("strict-transport-security");

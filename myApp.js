@@ -19,19 +19,7 @@ app.use(helmet.hidePoweredBy());
 // app.use(helmet.noSniff());
 
 // Reto 6
-// app.use(helmet.dnsPrefetchControl({ allow: false }));
-
-// Reto 7
-// app.use(helmet.ieNoOpen());
-
-// Reto 8
-const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
-app.use(
-  helmet.hsts({
-    maxAge: ninetyDaysInSeconds,
-    force: true,
-  })
-);
+app.use(helmet.dnsPrefetchControl());
 
 app.use(express.static("public"));
 app.disable("strict-transport-security");

@@ -13,7 +13,10 @@ app.use(helmet.hidePoweredBy());
 // app.use(helmet.frameguard({ action: "deny" }));
 
 // Reto 4
-app.use(helmet.xssFilter());
+// app.use(helmet.xssFilter());
+
+// Reto 5
+app.use(helmet.noSniff());
 
 app.use(express.static("public"));
 app.disable("strict-transport-security");
@@ -27,4 +30,3 @@ let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
-

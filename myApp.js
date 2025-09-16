@@ -19,7 +19,10 @@ app.use(helmet.hidePoweredBy());
 // app.use(helmet.noSniff());
 
 // Reto 6
-app.use(helmet.dnsPrefetchControl({ allow: false }));
+// app.use(helmet.dnsPrefetchControl({ allow: false }));
+
+// Reto 7
+app.use(helmet.ieNoOpen());
 
 app.use(express.static("public"));
 app.disable("strict-transport-security");

@@ -6,31 +6,17 @@ module.exports = app;
 
 const api = require("./server.js");
 
-// Reto 2
-app.use(helmet.hidePoweredBy());
-
-// Reto 3
-app.use(helmet.frameguard({ action: "deny" }));
-
-// Reto 4
-app.use(helmet.xssFilter());
-
-// Reto 5
-app.use(helmet.noSniff());
-
-// Reto 6
-app.use(helmet.dnsPrefetchControl());
-
-// Reto 7
-app.use(helmet.noCache());
-
-// Reto 8 - Content Security Policy
+// Usar helmet() como middleware 'parent'
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "trusted-cdn.com"],
+  helmet({
+    frameguard: { action: "deny" }, // configuramos frameguard
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "trusted-cdn.com"],
+      },
     },
+    dnsPrefetchControl: false, // deshabilitamos dnsPrefetchControl
   })
 );
 
@@ -46,4 +32,3 @@ let port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Your app is listening on port ${port}`);
 });
-

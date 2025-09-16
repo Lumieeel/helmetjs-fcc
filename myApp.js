@@ -24,6 +24,16 @@ app.use(helmet.dnsPrefetchControl());
 // Reto 7
 app.use(helmet.noCache());
 
+// Reto 8 - Content Security Policy
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "trusted-cdn.com"],
+    },
+  })
+);
+
 app.use(express.static("public"));
 app.disable("strict-transport-security");
 app.use("/_api", api);

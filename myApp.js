@@ -2,9 +2,9 @@ const express = require("express");
 const helmet = require("helmet");
 const app = express();
 
-const api = require("./server.js");
+module.exports = app;
 
-app.use(express.static("public"));
+const api = require("./server.js");
 
 // Reto 2
 app.use(helmet.hidePoweredBy());
@@ -12,16 +12,10 @@ app.use(helmet.hidePoweredBy());
 // Reto 3
 app.use(helmet.frameguard({ action: "deny" }));
 
+// luego de Helmet va el resto
+app.use(express.static("public"));
 app.disable("strict-transport-security");
 app.use("/_api", api);
 
 app.get("/", function (request, response) {
-  response.sendFile(__dirname + "/views/index.html");
-});
-
-let port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Your app is listening on port ${port}`);
-});
-
-module.exports = app;
+  response.sendFile(__
